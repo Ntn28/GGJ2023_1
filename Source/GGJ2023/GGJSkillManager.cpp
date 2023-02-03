@@ -17,7 +17,14 @@ AGGJSkillManager::AGGJSkillManager()
 void AGGJSkillManager::BeginPlay()
 {
 	Super::BeginPlay();
-	NumOfSkills = GameplayStruct->MaxSkillToDisplay;
+	if (IsValid(GameplayStruct))
+	{
+		NumOfSkills = GameplayStruct->MaxSkillToDisplay;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("GameplayStructNull"));
+	}
 	//SkillSelector();
 
 	//FPlayerInfo Info;
