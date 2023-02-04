@@ -52,7 +52,10 @@ void AGGJSkillManager::SkillSelector(FPlayerInfo& Data)
 	for(FSkillDataStruct* SingleSkill : SkillList)
 	{
 		SkillDataMapBuff.Add(SingleSkill->StatsToModify, *SingleSkill);
-		SkillDataMapDeBuff.Add(SingleSkill->StatsToModify, *SingleSkill);
+		if (SingleSkill->SkillType != ECategory::EOneTime)
+		{
+			SkillDataMapDeBuff.Add(SingleSkill->StatsToModify, *SingleSkill);
+		}
 	}
 
 	CheckConstrain(Data.CurrentMaxHP, Stats.MinHp, Data.CurrentHp, EStats::EHp, SkillDataMapBuff, SkillDataMapDeBuff);
